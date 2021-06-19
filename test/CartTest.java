@@ -1,5 +1,6 @@
 import com.tw.domain.Cart;
 import com.tw.domain.Item;
+import com.tw.domain.Price;
 import com.tw.domain.Product;
 import org.junit.jupiter.api.Test;
 
@@ -10,13 +11,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CartTest {
 
     @Test
-    public void cartDriver(){
+    public void cartDriver() {
         Cart cart = new Cart();
 
-        Product ipadPro = new Product("Ipad Pro");
+        Product ipadPro = new Product("Ipad Pro", new Price(10.00));
+        System.out.println(ipadPro.getPrice());
         cart.addProduct(ipadPro, 1);
-        cart.addProduct(new Product("Hero ink Pen"), 1);
-        cart.addProduct(new Product("GM Cricket Bat"), 2);
+        cart.addProduct(new Product("Hero ink Pen", new Price(5.50)), 1);
+        cart.addProduct(new Product("GM Cricket Bat", new Price(20.00)), 2);
 
         List<Item> cartItems = cart.getCartItems();
 
@@ -32,7 +34,7 @@ public class CartTest {
     @Test
     void compareCarts() {
         Cart cart1 = new Cart();
-        Product ipadPro = new Product("Ipad Pro");
+        Product ipadPro = new Product("Ipad Pro", new Price(10.00));
         cart1.addProduct(ipadPro, 1);
 
         Cart cart2 = new Cart();
