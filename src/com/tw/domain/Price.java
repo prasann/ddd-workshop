@@ -11,6 +11,11 @@ public class Price {
         this.currency = Currency.getInstance("INR");
     }
 
+    public Price applyDiscount(int percentage) {
+        int factor = (100 - percentage) / 100;
+        return new Price(this.value * factor);
+    }
+
     @Override
     public String toString() {
         return "Price{" +
