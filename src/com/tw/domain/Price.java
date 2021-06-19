@@ -16,6 +16,10 @@ public class Price {
         return new Price(this.value * factor);
     }
 
+    private Price add(Price price){
+        return new Price(this.value + price.value);
+    }
+
     @Override
     public String toString() {
         return "Price{" +
