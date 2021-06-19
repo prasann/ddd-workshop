@@ -16,8 +16,16 @@ public class Price {
         return new Price(this.value * factor);
     }
 
-    private Price add(Price price){
+    public Price add(Price price){
         return new Price(this.value + price.value);
+    }
+
+    public Price multiply(int multiplyFactor){
+        return new Price(this.value * multiplyFactor);
+    }
+
+    public double getValue() {
+        return value;
     }
 
     @Override

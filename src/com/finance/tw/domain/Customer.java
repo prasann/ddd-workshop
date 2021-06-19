@@ -12,7 +12,7 @@ public class Customer {
     public Customer(String address) {
         this.address = address;
         this.id = UUID.randomUUID();
-        this.accounts = new ArrayList();
+        this.accounts = new ArrayList<>();
     }
 
     public void addAccount(Account account){

@@ -20,4 +20,17 @@ public class Item {
     public int getQuantity() {
         return quantity;
     }
+
+    public Price getPrice(){
+        return this.product.getPrice().multiply(quantity);
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id='" + id + '\'' +
+                ", product=" + product +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

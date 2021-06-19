@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.tw.domain.service.DiscountService.getDiscountedPrice;
+import static com.tw.domain.WeightUnit.KILOGRAM;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CartTest {
@@ -18,9 +18,9 @@ public class CartTest {
         String iPadPro = "Ipad Pro";
         String heroPen = "Hero ink Pen";
         String cricketBat = "GM Cricket Bat";
-        competitorPrice.put(iPadPro, new Price(15));
-        competitorPrice.put(heroPen, new Price(5.50));
-        competitorPrice.put(cricketBat, new Price(20.00));
+        competitorPrice.put(iPadPro, new Price(20));
+        competitorPrice.put(heroPen, new Price(30));
+        competitorPrice.put(cricketBat, new Price(40.00));
 
         Product ipadPro = getProduct(competitorPrice, iPadPro);
 
@@ -40,20 +40,20 @@ public class CartTest {
 
         Order order = cart.checkout();
 
+        assertEquals(110, order.getAmount().getValue());
+
         assertTrue(cart.isCheckedOut());
         assertNotNull(order);
-
-
     }
 
     private Product getProduct(Map<String, Price> competitorPrice, String productName) {
-        return new Product(productName, getDiscountedPrice(competitorPrice.get(productName)));
+        return new Product(productName, new Weight(2, KILOGRAM), competitorPrice.get(productName));
     }
 
     @Test
     void compareCarts() {
         Cart cart1 = new Cart();
-        Product ipadPro = new Product("Ipad Pro", new Price(10.00));
+        Product ipadPro = new Product("Ipad Pro", new Weight(2, KILOGRAM), new Price(10.00));
         cart1.addProduct(ipadPro, 1);
 
         Cart cart2 = new Cart();
