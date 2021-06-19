@@ -1,5 +1,4 @@
 import com.tw.domain.*;
-import com.tw.domain.service.DiscountService;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -38,6 +37,13 @@ public class CartTest {
 
         assertEquals(2, cartItems.size());
         assertTrue(cart.getRemovedProductLog().contains(ipadPro));
+
+        Order order = cart.checkout();
+
+        assertTrue(cart.isCheckedOut());
+        assertNotNull(order);
+
+
     }
 
     private Product getProduct(Map<String, Price> competitorPrice, String productName) {
